@@ -136,26 +136,26 @@ function setupClickables() {
 
   // we do specific callbacks for each clickable
   clickables[0].onPress = clickableButtonPressed;
-  clickables[1].onPress = cl_OneA;
-  clickables[2].onPress = cl_OneB;
-  clickables[3].onPress = cl_OneC;
-  clickables[4].onPress = cl_TwoA;
-  clickables[5].onPress = cl_TwoB;
-  clickables[6].onPress = cl_TwoC;
-  clickables[7].onPress = cl_ThreeA;
-  clickables[8].onPress = cl_ThreeB;
-  clickables[9].onPress = cl_SixA;
-  clickables[10].onPress = cl_SixB;
-  clickables[11].onPress = cl_SixC;
-  clickables[12].onPress = cl_SevenA;
-  clickables[13].onPress = cl_SevenB;
-  clickables[14].onPress = cl_NineA;
-  clickables[15].onPress = cl_NineB;
-  clickables[16].onPress = cl_TenA;
-  clickables[17].onPress = cl_TenB;
-  clickables[18].onPress = cl_TwelveA;
-  clickables[19].onPress = cl_TwelveB;
-  
+  clickables[cl_OneA].onPress = cl_OneA_Pressed;
+  clickables[cl_OneB].onPress = cl_OneB_Pressed;
+  clickables[cl_OneC].onPress = cl_OneC_Pressed;
+  clickables[cl_TwoA].onPress = cl_TwoA_Pressed;
+  clickables[cl_TwoB].onPress = cl_TwoB_Pressed;
+  clickables[cl_TwoC].onPress = cl_TwoC_Pressed;
+  clickables[cl_ThreeA].onPress = cl_ThreeA_Pressed;
+  clickables[cl_ThreeB].onPress = cl_ThreeB_Pressed;
+  clickables[cl_SixA].onPress = cl_SixA_Pressed;
+  clickables[cl_SixB].onPress = cl_SixB_Pressed;
+  clickables[cl_SixC].onPress = cl_SixC_Pressed;
+  clickables[cl_SevenA].onPress = cl_SevenA_Pressed;
+  clickables[cl_SevenB].onPress = cl_SevenB_Pressed;
+  clickables[cl_NineA].onPress = cl_NineA_Pressed;
+  clickables[cl_NineB].onPress = cl_NineB_Pressed;
+  clickables[cl_TenA].onPress = cl_TenA_Pressed;
+  clickables[cl_TenB].onPress = cl_TenB_Pressed;
+  clickables[cl_TwelveA].onPress = cl_TwelveA_Pressed;
+  clickables[cl_TwelveB].onPress = cl_TwelveB_Pressed;
+
 }
 
 // tint when mouse is over
@@ -174,6 +174,96 @@ clickableButtonOnOutside = function () {
 clickableButtonPressed = function() {
   adventureManager.clickablePressed(this.name);
 } 
+
+// do something similar for ALL clickables
+cl_OneA_Pressed = function() {
+   // add scores, etc.
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_OneB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_OneC_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_TwoA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_TwoB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_TwoC_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_ThreeA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_ThreeB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_SixA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_SixB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
+cl_SixC_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_SevenA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_SevenB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_NineA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_NineB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_TenA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_TenB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_TwelveA_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+cl_TwelveB_Pressed = function() {
+
+   adventureManager.clickablePressed(this.name);
+}
+
 
 //-------------- ROOMS --------------//
 
