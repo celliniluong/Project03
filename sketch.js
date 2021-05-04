@@ -1,13 +1,11 @@
 /***********************************************************************************
-  MoodyMaze
-  by Scott Kildall
-
+ Project 03: OneWay
+  by Cellini Luong
   Uses the p5.2DAdventure.js class 
   
 ------------------------------------------------------------------------------------
-	To use:
-	Add this line to the index.html
-
+  To use:
+  Add this line to the index.html
   <script src="p5.2DAdventure.js"></script>
 ***********************************************************************************/
 
@@ -25,44 +23,40 @@ var clickables;           // an array of clickable objects
 
 // indexes into the clickable array (constants) 
 const cl_startScenario = 0;
-const cl_Start_GoomazonPays = 1;
-const cl_Start_CityPays = 2;
-const cl_Start_RaiseTaxes = 3;
-const cl_GoomazonMoves_CityPays = 4;
-const cl_GoomazonMoves_RaiseTaxes = 5;
-const cl_GoomazonMoves_BuildRival = 6;
-const cl_GoomazonMoves_IgnoreThem = 7;
-const cl_CityPays_CutTheArts = 8;
-const cl_CityPays_CutTransportation = 9;
-const cl_CityPays_CutCityWages = 10;
-const cl_CityPays_CutParks = 11;
+const cl_OneA = 1;
+const cl_OneB = 2;
+const cl_OneC = 3;
+const cl_TwoA = 4;
+const cl_TwoB = 5;
+const cl_TwoC = 6;
+const cl_ThreeA = 7;
+const cl_ThreeB = 8;
+const cl_SixA = 9;
+const cl_SixB = 10;
+const cl_SixC = 11;
+const cl_SevenA = 12;
+const cl_SevenB = 13;
+const cl_NineA = 14;
+const cl_NineB = 15;
+const cl_TenA = 16;
+const cl_TenB = 17;
+const cl_TwelveA = 18;
+const cl_TwelveB = 19;
 
-
-// anger emojis
-var angerImage;   // anger emoji
-var maxAnger = 5;
-
-// character arrays
-var characterImages = [];   // array of character images, keep global for future expansion
-var characters = [];        // array of charactes
-
-// characters
-const goomazon = 0;
-const mayor = 1;
-const bigLabor = 2;
-const nimby = 3;
-const treeHugger = 4;
-const consumer = 5;
 
 // room indices - look at adventureManager
-const startScreen = 3;
-const goomazonMovesScreen = 4;
-const cityPaysScreen = 5;
-const raisedTaxesScreen = 6;
-const rivalCompanyScreen = 7;
-const goomazonExpands = 8;
-const cityUgly = 9;
-const workersStrike = 10;
+const one = 3;
+const two = 4;
+const three = 5;
+const four = 6;
+const five = 7;
+const six = 8;
+const seven = 9;
+const eight = 10;
+const nine = 11;
+const ten = 12;
+const eleven = 13;
+const twelve = 14;
 
 let headlineFont;
 let bodyFont;
@@ -71,14 +65,9 @@ let bodyFont;
 // Allocate Adventure Manager with states table and interaction tables
 function preload() {
 
-  headlineFont = loadFont('fonts/FogCityGothic-Wide.otf');
-  bodyFont = loadFont('fonts/FogCityGothic-Regular.otf');
-
-  // load all images
-  angerImage = loadImage("assets/anger_emoji.png");
+  headlineFont = loadFont('fonts/Poppins-Bold.ttf');
+  bodyFont = loadFont('fonts/Poppins-Regular.ttf');
   
-  allocateCharacters();
-
   clickablesManager = new ClickableManager('data/clickableLayout.csv');
   adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
 }
@@ -112,17 +101,6 @@ function draw() {
   // draws background rooms and handles movement from one to another
   adventureManager.draw();
 
- // drawCharacters();
-
-  // don't draw them on first few screens
-  if( adventureManager.getStateName() === "Splash" ||
-      adventureManager.getStateName() === "Instructions" ||
-      adventureManager.getStateName() === "Characters" ) {
-    ;
-  }
-  else {
-    drawCharacters();
-  }
   
   // draw the p5.clickables, in front of the mazes but behind the sprites 
   clickablesManager.draw();
@@ -146,11 +124,6 @@ function mouseReleased() {
   adventureManager.mouseReleased();
 }
 
-function drawCharacters() {
-  for( let i = 0; i < characters.length; i++ ) {
-    characters[i].draw();
-  }
-}
 
 //-------------- CLICKABLE CODE  ---------------//
 
@@ -163,17 +136,26 @@ function setupClickables() {
 
   // we do specific callbacks for each clickable
   clickables[0].onPress = clickableButtonPressed;
-  clickables[1].onPress = clGoomazonPays;
-  clickables[2].onPress = clCityPays;
-  clickables[3].onPress = clRaiseTaxes;
-  clickables[4].onPress = clCityPays;
-  clickables[5].onPress = clRaiseTaxes;
-  clickables[6].onPress = clBuildRival;
-  clickables[7].onPress = clIgnoreThem;
-  clickables[8].onPress = clCutArts;
-  clickables[9].onPress = clCutTransportation;
-  clickables[10].onPress = clCutCityWages;
-  clickables[11].onPress = clCutParks;
+  clickables[1].onPress = cl_OneA;
+  clickables[2].onPress = cl_OneB;
+  clickables[3].onPress = cl_OneC;
+  clickables[4].onPress = cl_TwoA;
+  clickables[5].onPress = cl_TwoB;
+  clickables[6].onPress = cl_TwoC;
+  clickables[7].onPress = cl_ThreeA;
+  clickables[8].onPress = cl_ThreeB;
+  clickables[9].onPress = cl_SixA;
+  clickables[10].onPress = cl_SixB;
+  clickables[11].onPress = cl_SixC;
+  clickables[12].onPress = cl_SevenA;
+  clickables[13].onPress = cl_SevenB;
+  clickables[14].onPress = cl_NineA;
+  clickables[15].onPress = cl_NineB;
+  clickables[16].onPress = cl_TenA;
+  clickables[17].onPress = cl_TenB;
+  clickables[18].onPress = cl_TwelveA;
+  clickables[19].onPress = cl_TwelveB;
+  
 }
 
 // tint when mouse is over
@@ -193,153 +175,6 @@ clickableButtonPressed = function() {
   adventureManager.clickablePressed(this.name);
 } 
 
-//-- specific button callbacks: these will add or subtrack anger, then
-//-- pass the clickable pressed to the adventure manager, which changes the
-//-- state. A more elegant solution would be to use a table for all of these values
-
-clGoomazonPays = function() {
-    characters[goomazon].addAnger(2);
-    characters[nimby].subAnger(1);
-    characters[bigLabor].addAnger(1);
-    adventureManager.clickablePressed(this.name);
-}
-
-clCityPays = function() {
-  characters[mayor].addAnger(1);
-  characters[nimby].subAnger(1);
-  characters[goomazon].subAnger(2);
-  adventureManager.clickablePressed(this.name);
-}
-
-clRaiseTaxes = function() {
-  characters[nimby].addAnger(1);
-  characters[consumer].addAnger(1);
-  characters[treeHugger].addAnger(1);
-  characters[goomazon].subAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clBuildRival = function() {
-  characters[nimby].addAnger(2);
-  characters[consumer].subAnger(1);
-  characters[goomazon].addAnger(1);
-  characters[bigLabor].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clIgnoreThem = function() {
-  characters[nimby].addAnger(1);
-  characters[treeHugger].addAnger(1);
-  characters[bigLabor].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clCutArts = function() {
-  characters[treeHugger].addAnger(2);
-  characters[consumer].addAnger(2);
-  characters[mayor].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clCutTransportation = function() {
-  characters[treeHugger].addAnger(3);
-  characters[mayor].addAnger(1);
-  characters[consumer].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clCutCityWages = function() {
-  characters[mayor].addAnger(2);
-  characters[bigLabor].addAnger(2);
-  characters[consumer].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-clCutParks = function() {
-  characters[mayor].addAnger(1);
-  characters[treeHugger].addAnger(2);
-  characters[consumer].addAnger(1);
-  adventureManager.clickablePressed(this.name);
-}
-
-
-//*
-
-
-//-------------- CHARACTERS -------------//
-function allocateCharacters() {
-  // load the images first
-  characterImages[goomazon] = loadImage("assets/goomazon.jpg");
-  characterImages[mayor] = loadImage("assets/mayor.jpg");
-  characterImages[bigLabor] = loadImage("assets/bigLabor.jpg");
-  characterImages[nimby] = loadImage("assets/nimby.jpg");
-  characterImages[treeHugger] = loadImage("assets/treeHugger.jpg");
-  characterImages[consumer] = loadImage("assets/consumer.jpg");
-
-  for( let i = 0; i < characterImages.length; i++ ) {
-    characters[i] = new Character();
-    characters[i].setup( characterImages[i], 50 + (400 * parseInt(i/2)), 120 + (i%2 * 120));
-  }
-
-  // default anger is zero, set up some anger values
-  characters[bigLabor].addAnger(1);
-  characters[nimby].addAnger(2);
-  characters[treeHugger].addAnger(1);
-  characters[consumer].subAnger(2); // test
-}
-
-class Character {
-  constructor() {
-    this.image = null;
-    this.x = width/2;
-    this.y = width/2;
-  }
-
-  setup(img, x, y) {
-    this.image = img;
-    this.x = x;
-    this.y = y;
-    this.anger = 0;
-  }
-
-  draw() {
-    if( this.image ) {
-      push();
-      // draw the character icon
-      imageMode(CENTER);
-      image( this.image, this.x, this.y );
-
-      // draw anger emojis
-      for( let i = 0; i < this.anger; i++ ) {
-        image(angerImage, this.x + 70 + (i*40), this.y +10 );
-      }
-
-      pop();
-    }
-  }
-
-  getAnger() {
-    return this.anger;
-  }
-
-  // add, check for max overflow
-  addAnger(amt) {
-    this.anger += amt;
-    if( this.anger > maxAnger ) {
-      this.anger = maxAnger;
-    }
-
-  }
-
-  // sub, check for below zero
-  subAnger(amt) {
-    this.anger -= amt;
-    if( this.anger < 0 ) {
-      this.anger = 0;
-    }
-  }
-}
-
 //-------------- ROOMS --------------//
 
 // hard-coded text for all the rooms
@@ -351,14 +186,19 @@ function loadAllText() {
 // copy the array reference from adventure manager so that code is cleajer
   scenarioRooms = adventureManager.states;
 
-  scenarioRooms[startScreen].setText("Who Pays for it?", "The underground tunnels cost money to maintain. Goomazon threatens to leave the city if they have to pay for all the maintenance work. Who pays for it?");
-  scenarioRooms[goomazonMovesScreen].setText("Do we lure them back?", "Goomazon moves their headquarters to our rival city across the river. They layoff local workers. How should we respond?");
-  scenarioRooms[cityPaysScreen].setText("What do we cut?", "The city budget is getting tanked because of the cost of the tunels. Which programs should we cut?");
-  scenarioRooms[raisedTaxesScreen].setText("How do we help the economy?", "The wealthy leave the city in droves. Restaurants start closing and our tax base is depleted. What do we do?");
-  scenarioRooms[rivalCompanyScreen].setText("It's bad, what do we do?", "The rival company is even worse than Goomazon. In addition to being anti-union, they force everyone to wear silly uniforms, sing happy children's songs and sign the most restrictive NDAs ever.");
-  scenarioRooms[goomazonExpands].setText("Oh-no! Now what to do?", "Goomazon expands its operations. It is now both in your city and the rival city. It's driven out all the local businesses.");
-  scenarioRooms[cityUgly].setText("How can we fix this?", "The city has cut the budget to some of its essential services. It's been a cascading effect. Without arts and adequate transportation, everyone has become depressed. THE END.");
-  scenarioRooms[workersStrike].setText("How do we respond?", "There are massive worker's strikes. The city is shut down. Big labor is angry and riling people up. Thousands of protesters are in the streets.");
+  scenarioRooms[one].setText("Who Pays for it?", "The underground tunnels cost money to maintain. Goomazon threatens to leave the city if they have to pay for all the maintenance work. Who pays for it?");
+  scenarioRooms[two].setText("Do we lure them back?", "Goomazon moves their headquarters to our rival city across the river. They layoff local workers. How should we respond?");
+  scenarioRooms[three].setText("What do we cut?", "The city budget is getting tanked because of the cost of the tunels. Which programs should we cut?");
+  scenarioRooms[four].setText("How do we help the economy?", "The wealthy leave the city in droves. Restaurants start closing and our tax base is depleted. What do we do?");
+  scenarioRooms[five].setText("It's bad, what do we do?", "The rival company is even worse than Goomazon. In addition to being anti-union, they force everyone to wear silly uniforms, sing happy children's songs and sign the most restrictive NDAs ever.");
+  scenarioRooms[six].setText("Oh-no! Now what to do?", "Goomazon expands its operations. It is now both in your city and the rival city. It's driven out all the local businesses.");
+  scenarioRooms[seven].setText("How can we fix this?", "The city has cut the budget to some of its essential services. It's been a cascading effect. Without arts and adequate transportation, everyone has become depressed. THE END.");
+  scenarioRooms[eight].setText("How do we respond?", "There are massive worker's strikes. The city is shut down. Big labor is angry and riling people up. Thousands of protesters are in the streets.");
+  scenarioRooms[nine].setText();
+  scenarioRooms[ten].setText();
+  scenarioRooms[eleven].setText();
+  scenarioRooms[twelve].setText();
+
 }
 
 //-------------- SUBCLASSES / YOUR DRAW CODE CAN GO HERE ---------------//
@@ -380,7 +220,53 @@ class ScenarioRoom extends PNGRoom {
     this.titleText = titleText;
     this.bodyText = bodyText;
     this.drawY = 360;
-    this.drawX = 52;
+    this.drawX = 430;
+  }
+
+
+  // call the PNGRoom superclass's draw function to draw the background image
+  // and draw our instructions on top of this
+    draw() {
+      // this calls PNGRoom.draw()
+      super.draw();
+      
+      push();
+
+      // title text
+      fill(255);
+      textAlign(LEFT);
+      textFont(headlineFont);
+      textSize(36);
+
+      text("How do we feel?", this.drawX , 240);
+     
+      // Draw text in a box
+      //text(this.titleText, width/6, height/6, this.textBoxWidth, this.textBoxHeight );
+    
+      textFont(bodyFont);
+      textSize(28);
+
+      text(this.bodyText, this.drawX, this.drawY - 80, width - 480,height - (this.drawY+100) );
+      
+      pop();
+    }
+}
+
+class ResultsRoom extends PNGRoom {
+  // Constructor gets calle with the new keyword, when upon constructor for the adventure manager in preload()
+  constructor() {
+    super();    // call super-class constructor to initialize variables in PNGRoom
+
+    this.titleText = "";
+    this.bodyText = "";
+  }
+
+  // should be called for each room, after adventureManager allocates
+  setText( titleText, bodyText ) {
+    this.titleText = titleText;
+    this.bodyText = bodyText;
+    this.drawY = 360;
+    this.drawX = 430;
   }
 
   // call the PNGRoom superclass's draw function to draw the background image
@@ -397,22 +283,16 @@ class ScenarioRoom extends PNGRoom {
       textFont(headlineFont);
       textSize(36);
 
-      text("How do we feel?", this.drawX , 60);
-
-      // title text
-      textSize(30);
-
-      text(this.titleText, this.drawX , this.drawY);
+      text("How do we feel?", this.drawX , 240);
      
       // Draw text in a box
       //text(this.titleText, width/6, height/6, this.textBoxWidth, this.textBoxHeight );
     
       textFont(bodyFont);
-      textSize(24);
+      textSize(28);
 
-      text(this.bodyText, this.drawX , this.drawY + 60, width - (this.drawX*2),height - (this.drawY+100) );
+      text(this.bodyText, this.drawX, this.drawY - 80, width - 480,height - (this.drawY+100) );
       
       pop();
     }
 }
-
