@@ -12,5 +12,5 @@ ID,StateName,ClassName,PNGFilename,CollisionFilename
 10,Eight,ResultsRoom,assets/Results.png,
 11,Nine,ScenarioRoom,assets/Brooklyn.png,
 12,Ten,ScenarioRoom,assets/Brooklyn.png,
-13,Eleven,ScenarioRoom,assets/Brooklyn.png,
+13,Eleven,ResultsRoom,assets/Results.png,
 14,Twelve,ScenarioRoom,assets/Brooklyn.png,

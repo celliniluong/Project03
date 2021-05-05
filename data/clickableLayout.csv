@@ -1,21 +1,21 @@
 ID,Name,State,PNGFilename,Text,x,y,visible
-0,StartScenario,Characters,,Start Scenario,100,650,yes
-1,OneA,One,,Manhattan,470,480,yes
-2,OneB,One,,Staten Island,724,480,yes
-3,OneC,One,,Brooklyn,974,480,yes
-4,TwoA,Two,,Try Brooklyn,470,480,yes
-5,TwoB,Two,,Try Staten Island,724,480,yes
-6,TwoC,Two,,Buy OneWay,974,480,yes
-7,ThreeA,Three,,Pay for update,470,480,yes
-8,ThreeB,Three,,Leave NYC,724,480,yes
-9,SixA,Six,,Stay,470,480,yes
-10,SixB,Six,,Try Brooklyn,724,480,yes
-11,SixC,Six,,Try Manhattan,974,480,yes
-11,SevenA,Seven,,Commit to Purists,470,480,yes
-11,SevenB,Seven,,Leave NYC,724,480,yes
-11,NineA,Nine,,Buy OneWay,470,480,yes
-11,NineB,Nine,,Don't buy OneWay,724,480,yes
-11,TenA,Ten,,Pay for update,470,480,yes
-11,TenB,Ten,,Lose your spot,724,480,yes
-11,TwelveA,Twelve,,Buy OneWay,470,480,yes
-11,TwelveB,Twelve,,Leave NYC,724,480,yes
+0,StartScenario,Characters,,Start Scenario,550,570,yes
+1,OneA,One,,Manhattan,470,420,yes
+2,OneB,One,,Staten Island,724,420,yes
+3,OneC,One,,Brooklyn,974,420,yes
+4,TwoA,Two,,Try Brooklyn,470,420,yes
+5,TwoB,Two,,Try Staten Island,724,420,yes
+6,TwoC,Two,,Buy OneWay,974,420,yes
+7,ThreeA,Three,,Pay for update,470,420,yes
+8,ThreeB,Three,,Leave NYC,724,420,yes
+9,SixA,Six,,Stay,470,420,yes
+10,SixB,Six,,Try Brooklyn,724,420,yes
+11,SixC,Six,,Try Manhattan,974,420,yes
+11,SevenA,Seven,,Commit to Purists,470,420,yes
+11,SevenB,Seven,,Leave NYC,724,420,yes
+11,NineA,Nine,,Buy OneWay,470,420,yes
+11,NineB,Nine,,Don't buy OneWay,724,420,yes
+11,TenA,Ten,,Pay for update,470,420,yes
+11,TenB,Ten,,Lose your spot,724,420,yes
+11,TwelveA,Twelve,,Buy OneWay,470,420,yes
+11,TwelveB,Twelve,,Leave NYC,724,420,yes

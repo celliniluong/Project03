@@ -7,6 +7,13 @@ var cl_lastClicked = null;
 //All created buttons
 var cl_clickables = [];
 
+function preload() {
+
+  headlineFont = loadFont('fonts/Poppins-Bold.ttf');
+  bodyFont = loadFont('fonts/Poppins-Regular.ttf');
+  
+}
+
 //This function is what makes the magic happen and should be ran after
 //each draw cycle.
 p5.prototype.runGUI = function () {
@@ -61,16 +68,16 @@ function Clickable() {
 	this.resizeImageFlag = false;	// flag for setting width and height to image after setImage since it is asynchronous
 	this.x = 0;			//X position of the clickable
 	this.y = 0;			//Y position of the clickable
-	this.width = 100;		//Width of the clickable
+	this.width = 180;		//Width of the clickable
 	this.height = 50;		//Height of the clickable
 	this.color = "#FFFFFF";		//Background color of the clickable
 	this.cornerRadius = 10;		//Corner radius of the clickable
 	this.strokeWeight = 2;		//Stroke width of the clickable
 	this.stroke = "#000000";	//Border color of the clickable
 	this.text = "Press Me";		//Text of the clickable
-	this.textColor = "#000000";	//Color for the text shown
-	this.textSize = 12;		//Size for the text shown
-	this.textFont = "sans-serif";	//Font for the text shown
+	this.textColor = "#104373";	//Color for the text shown
+	this.textSize = 16;		//Size for the text shown
+	this.textFont = bodyFont;	//Font for the text shown
 	this.textScaled = false;     //Scale the text with the size of the clickable
 	
 	// image options

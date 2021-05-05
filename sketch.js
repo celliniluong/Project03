@@ -160,73 +160,63 @@ function setupClickables() {
 
 // tint when mouse is over
 clickableButtonHover = function () {
-  this.color = "#AA33AA";
-  this.noTint = false;
+  this.color = "#EE2525";
+  this.noTint = true;
   this.tint = "#FF0000";
 }
 
 // color a light gray if off
 clickableButtonOnOutside = function () {
   // backto our gray color
-  this.color = "#AAAAAA";
+  this.color = "#F2F2F2";
 }
 
+// Callback for every clickable used
 clickableButtonPressed = function() {
   adventureManager.clickablePressed(this.name);
 } 
 
-// do something similar for ALL clickables
 cl_OneA_Pressed = function() {
    // add scores, etc.
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_OneB_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_OneC_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_TwoA_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_TwoB_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_TwoC_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_ThreeA_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_ThreeB_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_SixA_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_SixB_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
 }
-
 cl_SixC_Pressed = function() {
 
    adventureManager.clickablePressed(this.name);
@@ -268,23 +258,20 @@ cl_TwelveB_Pressed = function() {
 //-------------- ROOMS --------------//
 
 // hard-coded text for all the rooms
-// the elegant way would be to load from an array
+
 function loadAllText() {
-  // go through all states and setup text
-  // ONLY call if these are ScenarioRoom
-  
-// copy the array reference from adventure manager so that code is cleajer
-  scenarioRooms = adventureManager.states;
+
+    scenarioRooms = adventureManager.states;
   resultsRooms = adventureManager.states;
 
   scenarioRooms[one].setText("Where to?", "You just lost the lease on your apartment. Where are you moving to?");
   scenarioRooms[two].setText("Should you stay or should you go?", "You are looking for an apartment in Manhattan. However, since you do not already have OneWay installed into your body, the lifestyle is troublingly incompatible with your needs. You struggle to even submit a rental application without OneWay, let alone get in touch with real estate agents. What do you want to do?");
   scenarioRooms[three].setText("Software update", "You bought OneWay and managed to secure a spot in Manhattan. BigInc has just released a software upgrade that cost nearly as much as the installation itself. This update will put you in deep debt, but is the only way to stay compatible with the technology in Manhattan. What do you do?");
   resultsRooms[four].setText("Yikes", "You paid for the update in order to keep OneWay compatible. But, now you are very broke. You can’t even afford your current rent. You try to seek support from the government, but you do not qualify for any aid because having OneWay puts you in the highest bracket of income. You now have the most current technology, but are homeless.");
-  scenarioRooms[five].setText("Congratulations", "You have left what is left of New York. You have escaped the pressure of Big Inc. For now that is…..");
+  resultsRooms[five].setText("Congratulations", "You have left what is left of New York. You have escaped the pressure of Big Inc. For now that is…..");
   scenarioRooms[six].setText("Should you stay or should you go?", "You are on Staten Island. In order to seek residency, you must commit to an anti-technology oath. The purists have banned all forms of smart devices and have reverted to pre-internet times of living in fear of the evolution of technology. Stay or go someplace else?");
   scenarioRooms[seven].setText("Welcome to Staten Island?", "You’ve decided to stay on Staten Island. You are having trouble getting accustomed to the tech-free lifestyle and you feel a lot of social pressure from the community on where you stand in response to BigInc taking over NYC. What do you do?");
-  resultsRooms[eight].setText("Yikes?", "You have decided to commit the Purists, but have chosen the side of a losing battle. Your own community has started to lose faith in the cause, resulting in leadership taking unethical actions to keep the community pure. Naturally the community becomes corrupt and loses many members to BigInc.");
+  resultsRooms[eight].setText("Yikes", "You have decided to commit the Purists, but have chosen the side of a losing battle. Your own community has started to lose faith in the cause, resulting in leadership taking unethical actions to keep the community pure. Naturally the community becomes corrupt and loses many members to BigInc.");
   scenarioRooms[nine].setText("In or out?", "Big Inc just bought out abandoned buildings all over Brooklyn with plans to convert them to luxury apartments, OneWay compatible apartments with the hopes of inviting other wealthy communities to join their society. If you have OneWay installed, you’ll have the chance to be a part of the extended community and get in early at an up and coming area.");
   scenarioRooms[ten].setText("Software update","You bought OneWay and have been living in a poor quality building while waiting for your spot in the up and coming luxury apartments. BigInc has just released a software upgrade that cost nearly as much as the installation itself. This update will put you in deep debt, but is the only way to secure your spot on the waitlist. What do you do?");
   resultsRooms[eleven].setText("Yikes", "The building you are currently living in just got bought out by BigInc. They are doing a complete remodel and kicking out all of the current residents. You can’t afford to live anywhere in Brooklyn anymore. You try to seek support from the government, but you do not qualify for any aid because having OneWay puts you in the highest bracket of income. You now have an outdated form of OneWay and are homeless.");
@@ -292,11 +279,9 @@ function loadAllText() {
 
 }
 
-//-------------- SUBCLASSES / YOUR DRAW CODE CAN GO HERE ---------------//
+//-------------- SUBCLASSES / Scenario Screens, Results Screens ---------------//
 
-// Instructions screen has a backgrounnd image, loaded from the adventureStates table
-// It is sublcassed from PNGRoom, which means all the loading, unloading and drawing of that
-// class can be used. We call super() to call the super class's function as needed
+// Defining class for Scenario Sreens
 class ScenarioRoom extends PNGRoom {
   // Constructor gets calle with the new keyword, when upon constructor for the adventure manager in preload()
   constructor() {
@@ -315,8 +300,7 @@ class ScenarioRoom extends PNGRoom {
   }
 
 
-  // call the PNGRoom superclass's draw function to draw the background image
-  // and draw our instructions on top of this
+  // Setting up draw layout for Scenario Screens
     draw() {
       // this calls PNGRoom.draw()
       super.draw();
@@ -343,6 +327,7 @@ class ScenarioRoom extends PNGRoom {
     }
 }
 
+// Defining class for Results Sreens
 class ResultsRoom extends PNGRoom {
   // Constructor gets calle with the new keyword, when upon constructor for the adventure manager in preload()
   constructor() {
@@ -356,12 +341,12 @@ class ResultsRoom extends PNGRoom {
   setText( titleText, bodyText ) {
     this.titleText = titleText;
     this.bodyText = bodyText;
-    this.drawY = 320;
-    this.drawX = 300;
+    this.drawY = 280;
+    this.drawX = 270;
   }
 
-  // call the PNGRoom superclass's draw function to draw the background image
-  // and draw our instructions on top of this
+ 
+  // Setting up draw layout for Results Screens
     draw() {
       // this calls PNGRoom.draw()
       super.draw();
@@ -370,11 +355,11 @@ class ResultsRoom extends PNGRoom {
 
       // title text
       fill(0);
-      textAlign(LEFT);
+      textAlign(CENTER);
       textFont(headlineFont);
       textSize(36);
 
-      text(this.titleText, this.drawX , this.drawY);
+      text(this.titleText, width/2 , this.drawY);
      
       // Draw text in a box
       //text(this.titleText, width/6, height/6, this.textBoxWidth, this.textBoxHeight );
@@ -382,7 +367,7 @@ class ResultsRoom extends PNGRoom {
       textFont(bodyFont);
       textSize(20);
 
-      text(this.bodyText, this.drawX, this.drawY + 60, width - 480,height - (this.drawY+100) );
+      text(this.bodyText, this.drawX, this.drawY + 40, 770, 500);
       
       pop();
     }
