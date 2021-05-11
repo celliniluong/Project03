@@ -76,7 +76,7 @@ function preload() {
 
   // loading images
   stressSymbol = loadImage("assets/Stress.png");
-  stressCard = loadImage("assets/stresscard.png")
+
   
   clickablesManager = new ClickableManager('data/clickableLayout.csv');
   adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
@@ -85,6 +85,8 @@ function preload() {
 // Setup the adventure manager
 function setup() {
   createCanvas(1280, 720);
+
+  stressCard = new scoreCard();
 
   // setup the clickables = this will allocate the array
   clickables = clickablesManager.setup();
@@ -110,6 +112,8 @@ function setup() {
 function draw() {
   // draws background rooms and handles movement from one to another
   adventureManager.draw();
+
+  stressCard.draw();
 
   
   // draw the p5.clickables, in front of the mazes but behind the sprites 
@@ -192,63 +196,63 @@ cl_OneA_Pressed = function() {
    adventureManager.clickablePressed(this.name);
 }
 cl_OneB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_OneC_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoC_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixC_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenB_Pressed = function() {
@@ -270,15 +274,10 @@ class scoreCard {
   constructor () {
     this.image = loadImage("assets/stresscard.png")
     this.x = width/2;
-    this.y = width/2;
-  }
-
-  setup(img, x, y) {
-    this.image = img;
-    this.x = x;
-    this.y = y;
+    this.y = height/2;
     this.stress = 0;
   }
+
 
   draw(){
     if( this.image ) {
@@ -288,7 +287,7 @@ class scoreCard {
       image( this.image, this.x, this.y );
 
       // draw stress symbol
-      for( let i = 0; i , this.stress; i++ ){
+      for( let i = 0; i < this.stress; i++ ){
         image(stressSymbol, this.x + 70 + (i*40), this.y + 10)
       }
 
