@@ -19,7 +19,7 @@ ID,Name,State,PNGFilename,Text,x,y,visible
 18,TenB,Ten,,Lose your spot,724,420,yes
 19,TwelveA,Twelve,,Buy OneWay,470,420,yes
 20,TwelveB,Twelve,,Leave NYC,724,420,yes
-21,FourA,Four,,Restart,524,460,yes
-22,FiveA,Five,,Restart,524,460,yes
-23,EightA,Eight,,Restart,524,460,yes
-24,ElevenA,Eleven,,Restart,524,460,yes
+21,FourA,Four,,Restart,550,480,yes
+22,FiveA,Five,,Restart,550,480,yes
+23,EightA,Eight,,Restart,550,480,yes
+24,ElevenA,Eleven,,Restart,550,480,yes

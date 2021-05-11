@@ -1,12 +1,19 @@
 /***********************************************************************************
  Project 03: OneWay
   by Cellini Luong
-  Uses the p5.2DAdventure.js class 
-  
+
+My speculative technology is OneWay.
+
+The year is 2028, the iPhone has become obsolete. Big Inc, a tech company, has found an intra-body solution to all
+digital functions that we once relied on our mobile devices for. With this new technology we are able to project all
+needed digital tools above the space of our palm. As the technology is deeply rooted in the core of our composition,
+it is highly responsive and to the biological processes in our body. 
+
+This experience spans the boroughs of NYC. A location-focused prompt on what decisions you will make in this new
+state of the world.
+
 ------------------------------------------------------------------------------------
-  To use:
-  Add this line to the index.html
-  <script src="p5.2DAdventure.js"></script>
+ 
 ***********************************************************************************/
 
 // adventure manager global  
@@ -42,10 +49,14 @@ const cl_TenA = 16;
 const cl_TenB = 17;
 const cl_TwelveA = 18;
 const cl_TwelveB = 19;
+const cl_FourA = 20;
+const cl_FiveA = 21;
+const cl_EightA = 22;
+const cl_ElevenA = 23;
 
 // Stress symbol for scorecard
 var stressSymbol;   // stress symbol
-var maxStress = 5;
+var maxStress = 6;
 
 var stressCard;
 
@@ -63,9 +74,9 @@ const ten = 12;
 const eleven = 13;
 const twelve = 14;
 
+// setting up typefaces
 let headlineFont;
 let bodyFont;
-
 
 // Allocate Adventure Manager with states table and interaction tables
 function preload() {
@@ -77,7 +88,7 @@ function preload() {
   // loading images
   stressSymbol = loadImage("assets/Stress.png");
 
-  
+  // loading clickable and adventure managers
   clickablesManager = new ClickableManager('data/clickableLayout.csv');
   adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
 }
@@ -86,12 +97,13 @@ function preload() {
 function setup() {
   createCanvas(1280, 720);
 
+  // setting up class for scorecard function
   stressCard = new scoreCard();
 
   // setup the clickables = this will allocate the array
   clickables = clickablesManager.setup();
 
-  // this is optional but will manage turning visibility of buttons on/off
+  
   // based on the state name in the clickableLayout
   adventureManager.setClickableManager(clickablesManager);
 
@@ -102,7 +114,6 @@ function setup() {
   loadAllText();
 
   // call OUR function to setup additional information about the p5.clickables
-  // that are not in the array 
   setupClickables(); 
 
   fs = fullscreen();
@@ -113,10 +124,21 @@ function draw() {
   // draws background rooms and handles movement from one to another
   adventureManager.draw();
 
-  stressCard.draw();
+  // Only draw scorecard on certain screens
+  if( adventureManager.getStateName() === "Splash" ||
+      adventureManager.getStateName() === "Instructions" ||
+      adventureManager.getStateName() === "Characters" ||
+      adventureManager.getStateName() === "Four" ||
+      adventureManager.getStateName() === "Five" ||
+      adventureManager.getStateName() === "Eight" ||
+      adventureManager.getStateName() === "Eleven") {
+    ;
+  }
+  else {
+    stressCard.draw();
+  }
 
-  
-  // draw the p5.clickables, in front of the mazes but behind the sprites 
+  // draw the p5.clickables in front
   clickablesManager.draw();
 }
 
@@ -148,7 +170,7 @@ function setupClickables() {
     clickables[i].onOutside = clickableButtonOnOutside;    
   }
 
-  // we do specific callbacks for each clickable
+  // Specific callbacks for each clickable
   clickables[0].onPress = clickableButtonPressed;
   clickables[cl_OneA].onPress = cl_OneA_Pressed;
   clickables[cl_OneB].onPress = cl_OneB_Pressed;
@@ -169,12 +191,15 @@ function setupClickables() {
   clickables[cl_TenB].onPress = cl_TenB_Pressed;
   clickables[cl_TwelveA].onPress = cl_TwelveA_Pressed;
   clickables[cl_TwelveB].onPress = cl_TwelveB_Pressed;
-
+  clickables[cl_FourA].onPress = cl_FourA_Pressed;
+  clickables[cl_FiveA].onPress = cl_FiveA_Pressed;
+  clickables[cl_EightA].onPress = cl_EightA_Pressed;
+  clickables[cl_ElevenA].onPress = cl_ElevenA_Pressed;
 }
 
 // tint when mouse is over
 clickableButtonHover = function () {
-  this.color = "#EE2525";
+  this.color = "#FFFFFF";
   this.noTint = true;
   this.tint = "#FF0000";
 }
@@ -182,17 +207,16 @@ clickableButtonHover = function () {
 // color a light gray if off
 clickableButtonOnOutside = function () {
   // backto our gray color
-  this.color = "#F2F2F2";
+  this.color = "#FFFFFF";
 }
 
 // Callback for every clickable used
+// Adding a responding stress score for each clickable
 clickableButtonPressed = function() {
   adventureManager.clickablePressed(this.name);
 } 
-
 cl_OneA_Pressed = function() {
-   // add scores, etc.
-   stressCard.addStress(1);
+   stressCard.addStress(2);
    adventureManager.clickablePressed(this.name);
 }
 cl_OneB_Pressed = function() {
@@ -200,27 +224,25 @@ cl_OneB_Pressed = function() {
    adventureManager.clickablePressed(this.name);
 }
 cl_OneC_Pressed = function() {
-   stressCard.addStress(1);
+  
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoA_Pressed = function() {
-   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoB_Pressed = function() {
-   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoC_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(2);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeA_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(3);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeB_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.subStress(2);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixA_Pressed = function() {
@@ -228,7 +250,6 @@ cl_SixA_Pressed = function() {
    adventureManager.clickablePressed(this.name);
 }
 cl_SixB_Pressed = function() {
-   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixC_Pressed = function() {
@@ -236,48 +257,65 @@ cl_SixC_Pressed = function() {
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenA_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(2);
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenB_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.subStress(2);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineA_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(3);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineB_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(3);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenA_Pressed = function() {
-   stressCard.addStress(1);
+   stressCard.addStress(3);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenB_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(4);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwelveA_Pressed = function() {
-   addStress(1);
+   stressCard.addStress(3);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwelveB_Pressed = function() {
-   addStress(1);
+   stressCard.subStress(2);
    adventureManager.clickablePressed(this.name);
 }
+cl_FourA_Pressed = function() {
+   stressCard.subStress(6);
+   adventureManager.clickablePressed(this.name);
+}
+cl_FiveA_Pressed = function() {
+  stressCard.subStress(6);
+   adventureManager.clickablePressed(this.name);
+}
+cl_EightA_Pressed = function() {
+   stressCard.subStress(6);
+   adventureManager.clickablePressed(this.name);
+}
+cl_ElevenA_Pressed = function() {
+  stressCard.subStress(6);
+   adventureManager.clickablePressed(this.name);
+}
+
 
 //-------------- STRESS CARD --------//
 
 class scoreCard {
+  // loading scorecard png
   constructor () {
     this.image = loadImage("assets/stresscard.png")
-    this.x = width/2;
-    this.y = height/2;
+    this.x = 822;
+    this.y = 602;
     this.stress = 0;
   }
-
 
   draw(){
     if( this.image ) {
@@ -288,7 +326,7 @@ class scoreCard {
 
       // draw stress symbol
       for( let i = 0; i < this.stress; i++ ){
-        image(stressSymbol, this.x + 70 + (i*40), this.y + 10)
+        image(stressSymbol, this.x - 80 + (i*80), this.y)
       }
 
       pop();
@@ -299,7 +337,7 @@ class scoreCard {
     return this.stress;
   }
 
-  // add, check for max overflow
+  // add stress, check for max overflow
   addStress(amt) {
     this.stress += amt;
     if( this.stress > maxStress ) {
@@ -308,7 +346,7 @@ class scoreCard {
 
   }
 
-  // sub, check for below zero
+  // sub stress, check for below zero
   subStress(amt) {
     this.stress -= amt;
     if( this.stress < 0 ) {
@@ -317,14 +355,13 @@ class scoreCard {
   }
 }
 
-
 //-------------- ROOMS --------------//
 
 // hard-coded text for all the rooms
 
 function loadAllText() {
 
-    scenarioRooms = adventureManager.states;
+  scenarioRooms = adventureManager.states;
   resultsRooms = adventureManager.states;
 
   scenarioRooms[one].setText("Where to?", "You just lost the lease on your apartment. Where are you moving to?");
@@ -333,7 +370,7 @@ function loadAllText() {
   resultsRooms[four].setText("Yikes", "You paid for the update in order to keep OneWay compatible. But, now you are very broke. You can’t even afford your current rent. You try to seek support from the government, but you do not qualify for any aid because having OneWay puts you in the highest bracket of income. You now have the most current technology, but are homeless.");
   resultsRooms[five].setText("Congratulations", "You have left what is left of New York. You have escaped the pressure of Big Inc. For now that is…..");
   scenarioRooms[six].setText("Should you stay or should you go?", "You are on Staten Island. In order to seek residency, you must commit to an anti-technology oath. The purists have banned all forms of smart devices and have reverted to pre-internet times of living in fear of the evolution of technology. Stay or go someplace else?");
-  scenarioRooms[seven].setText("Welcome to Staten Island?", "You’ve decided to stay on Staten Island. You are having trouble getting accustomed to the tech-free lifestyle and you feel a lot of social pressure from the community on where you stand in response to BigInc taking over NYC. What do you do?");
+  scenarioRooms[seven].setText("Welcome to Staten Island", "You’ve decided to stay on Staten Island. You are having trouble getting accustomed to the tech-free lifestyle and you feel a lot of social pressure from the community on where you stand in response to BigInc taking over NYC. What do you do?");
   resultsRooms[eight].setText("Yikes", "You have decided to commit the Purists, but have chosen the side of a losing battle. Your own community has started to lose faith in the cause, resulting in leadership taking unethical actions to keep the community pure. Naturally the community becomes corrupt and loses many members to BigInc.");
   scenarioRooms[nine].setText("In or out?", "Big Inc just bought out abandoned buildings all over Brooklyn with plans to convert them to luxury apartments, OneWay compatible apartments with the hopes of inviting other wealthy communities to join their society. If you have OneWay installed, you’ll have the chance to be a part of the extended community and get in early at an up and coming area.");
   scenarioRooms[ten].setText("Software update","You bought OneWay and have been living in a poor quality building while waiting for your spot in the up and coming luxury apartments. BigInc has just released a software upgrade that cost nearly as much as the installation itself. This update will put you in deep debt, but is the only way to secure your spot on the waitlist. What do you do?");
@@ -374,7 +411,7 @@ class ScenarioRoom extends PNGRoom {
       fill(255);
       textAlign(LEFT);
       textFont(headlineFont);
-      textSize(36);
+      textSize(24);
 
       text(this.titleText, this.drawX , this.drawY - 120);
      
@@ -382,7 +419,7 @@ class ScenarioRoom extends PNGRoom {
       //text(this.titleText, width/6, height/6, this.textBoxWidth, this.textBoxHeight );
     
       textFont(bodyFont);
-      textSize(24);
+      textSize(20);
 
       text(this.bodyText, this.drawX, this.drawY - 80, width - 480,height - (this.drawY+100) );
       
@@ -420,7 +457,7 @@ class ResultsRoom extends PNGRoom {
       fill(0);
       textAlign(CENTER);
       textFont(headlineFont);
-      textSize(36);
+      textSize(32);
 
       text(this.titleText, width/2 , this.drawY);
      
@@ -428,9 +465,9 @@ class ResultsRoom extends PNGRoom {
       //text(this.titleText, width/6, height/6, this.textBoxWidth, this.textBoxHeight );
     
       textFont(bodyFont);
-      textSize(20);
+      textSize(18);
 
-      text(this.bodyText, this.drawX, this.drawY + 40, 770, 500);
+      text(this.bodyText, this.drawX, this.drawY + 32, 770, 500);
       
       pop();
     }
