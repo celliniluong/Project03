@@ -10,12 +10,16 @@ ID,Name,State,PNGFilename,Text,x,y,visible
 8,ThreeB,Three,,Leave NYC,724,420,yes
 9,SixA,Six,,Stay,470,420,yes
 10,SixB,Six,,Try Brooklyn,724,420,yes
-11,SixC,Six,,Try Manhattan,974,420,yes
-11,SevenA,Seven,,Commit to Purists,470,420,yes
-11,SevenB,Seven,,Leave NYC,724,420,yes
-11,NineA,Nine,,Buy OneWay,470,420,yes
-11,NineB,Nine,,Don't buy OneWay,724,420,yes
-11,TenA,Ten,,Pay for update,470,420,yes
-11,TenB,Ten,,Lose your spot,724,420,yes
-11,TwelveA,Twelve,,Buy OneWay,470,420,yes
-11,TwelveB,Twelve,,Leave NYC,724,420,yes
+12,SixC,Six,,Try Manhattan,974,420,yes
+13,SevenA,Seven,,Commit to Purists,470,420,yes
+14,SevenB,Seven,,Leave NYC,724,420,yes
+15,NineA,Nine,,Buy OneWay,470,420,yes
+16,NineB,Nine,,Don't buy OneWay,724,420,yes
+17,TenA,Ten,,Pay for update,470,420,yes
+18,TenB,Ten,,Lose your spot,724,420,yes
+19,TwelveA,Twelve,,Buy OneWay,470,420,yes
+20,TwelveB,Twelve,,Leave NYC,724,420,yes
+21,FourA,Four,,Restart,524,460,yes
+22,FiveA,Five,,Restart,524,460,yes
+23,EightA,Eight,,Restart,524,460,yes
+24,ElevenA,Eleven,,Restart,524,460,yes

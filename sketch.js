@@ -43,6 +43,11 @@ const cl_TenB = 17;
 const cl_TwelveA = 18;
 const cl_TwelveB = 19;
 
+// Stress symbol for scorecard
+var stressSymbol;   // stress symbol
+var maxStress = 5;
+
+var stressCard;
 
 // room indices - look at adventureManager
 const one = 3;
@@ -65,8 +70,13 @@ let bodyFont;
 // Allocate Adventure Manager with states table and interaction tables
 function preload() {
 
+  // loading font
   headlineFont = loadFont('fonts/Poppins-Bold.ttf');
   bodyFont = loadFont('fonts/Poppins-Regular.ttf');
+
+  // loading images
+  stressSymbol = loadImage("assets/Stress.png");
+  stressCard = loadImage("assets/stresscard.png")
   
   clickablesManager = new ClickableManager('data/clickableLayout.csv');
   adventureManager = new AdventureManager('data/adventureStates.csv', 'data/interactionTable.csv', 'data/clickableLayout.csv');
@@ -178,80 +188,134 @@ clickableButtonPressed = function() {
 
 cl_OneA_Pressed = function() {
    // add scores, etc.
-
+   stressCard.addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_OneB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_OneC_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwoC_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_ThreeB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SixC_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_SevenB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_NineB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TenB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwelveA_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
 }
 cl_TwelveB_Pressed = function() {
-
+   addStress(1);
    adventureManager.clickablePressed(this.name);
+}
+
+//-------------- STRESS CARD --------//
+
+class scoreCard {
+  constructor () {
+    this.image = loadImage("assets/stresscard.png")
+    this.x = width/2;
+    this.y = width/2;
+  }
+
+  setup(img, x, y) {
+    this.image = img;
+    this.x = x;
+    this.y = y;
+    this.stress = 0;
+  }
+
+  draw(){
+    if( this.image ) {
+      push();
+      // draw stress space
+      imageMode(CENTER);
+      image( this.image, this.x, this.y );
+
+      // draw stress symbol
+      for( let i = 0; i , this.stress; i++ ){
+        image(stressSymbol, this.x + 70 + (i*40), this.y + 10)
+      }
+
+      pop();
+    }
+  }
+
+  getStress() {
+    return this.stress;
+  }
+
+  // add, check for max overflow
+  addStress(amt) {
+    this.stress += amt;
+    if( this.stress > maxStress ) {
+      this.stress = maxStress;
+    }
+
+  }
+
+  // sub, check for below zero
+  subStress(amt) {
+    this.stress -= amt;
+    if( this.stress < 0 ) {
+      this.stress = 0;
+    }
+  }
 }
 
 
